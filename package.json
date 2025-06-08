@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build && vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "echo 'Dependencies installed with legacy peer deps support'"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^3.1.1",
