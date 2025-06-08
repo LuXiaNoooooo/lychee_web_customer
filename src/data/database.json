@@ -1,0 +1,272 @@
+{
+  "stores": [
+    {
+      "email": "hyjerrytang@gmail.com",
+      "password": "test1234",
+      "id": "store1",
+      "connect_id": "acct_1RI1ikH0Ec04w6EV",
+      "name": {"en": "Burger Place", "zh": "汉堡店", "it": "Burger Place"},
+      "description": {"en": "Classic American burgers and sides", "zh": "经典美式汉堡和配菜", "it": "Hamburger classici e lati"},
+      "image_url": "https://www.foodandwine.com/thmb/jldKZBYIoXJWXodRE9ut87K8Mag=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg",
+      "banner_url": "https://vcedzupvxcpdkdkesfaq.supabase.co/storage/v1/object/public/shop/back.png",
+      "tags": {"en": ["In-store", "15-20 min", "Pickup available"], "zh": ["内用", "15-20分钟", "外带"], "it": ["In-store", "15-20 min", "Pickup available"]},
+      "tax_info": {"tax_rate": 0.22, "vat_number": "1234567890", "tax_included": true},
+      "supported_order_types": ["In-store", "Pickup", "Reservation"],
+      "country": "IT",
+      "currency": "eur",
+      "store_info": {
+        "hours": {
+          "Mon": "7:00-19:00",
+          "Tue": "7:00-19:00",
+          "Wed": "7:00-19:00",
+          "Thu": "7:00-19:00",
+          "Fri": "7:00-19:00",
+          "Sat": "9:00-17:00",
+          "Sun": "9:00-17:00"
+        },
+        "number": "+39 333 1234567",
+        "address": "Via Roma, 123, Milano, IT"
+      },
+      "services": {"e-receipt": false, "pay_online": true},
+      "settings": {"printer": true, "pay_later": false, "tap_to_pay": false},
+      "tables": [
+        {
+          "number": "T1",
+          "code": "123456"
+        },
+        {
+          "number": "T2",
+          "code": "234567"
+        },
+        {
+          "number": "T3",
+          "code": "345678"
+        },
+        {
+          "number": "T4",
+          "code": "456789"
+        }
+      ],
+      "items": [
+        {
+          "id": "classic-burger",
+          "category": {"en": "Burgers", "zh": "汉堡", "it": "Hamburger"},
+          "sort_order": 1,
+          "name": {"en": "Classic Burger", "zh": "经典汉堡", "it": "Hamburger classico"},
+          "description": {"en": "100% beef patty with lettuce, tomato, and special sauce", "zh": "100% 牛肉汉堡配生菜、番茄和特制酱料", "it": "Hamburger classico con lattuga, pomodoro e speciale salsa"},
+          "price": 12.99,
+          "image_url": "https://placehold.co/200/png",
+          "customizations": [
+            {
+              "name": {"en": "Patty", "zh": "肉饼", "it": "polpetta"},
+              "options": [
+                {
+                  "name": {"en": "Regular", "zh": "普通", "it": "Normale"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "Well Done", "zh": "全熟", "it": "Bollito"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "Medium Rare", "zh": "半熟", "it": "Mezza"},
+                  "price": 0
+                }
+              ],
+              "maxSelect": 1
+            },
+            {
+              "name": {"en": "Add-ons", "zh": "加料", "it": "Extra"},
+              "options": [
+                {
+                  "name": {"en": "Cheese", "zh": "芝士", "it": "Formaggio"},
+                  "price": 1.50
+                },
+                {
+                  "name": {"en": "Bacon", "zh": "培根", "it": "Prosciutto"},
+                  "price": 2.50
+                },
+                {
+                  "name": {"en": "Extra Patty", "zh": "额外肉饼", "it": "Extra Patty"},
+                  "price": 4.99
+                },
+                {
+                  "name": {"en": "Caramelized Onions", "zh": "焦糖洋葱", "it": "Caramelized Onions"},
+                  "price": 1.00
+                },
+                {
+                  "name": {"en": "Mushrooms", "zh": "蘑菇", "it": "Funghi"},
+                  "price": 1.50
+                }
+              ],
+              "maxSelect": 0
+            },
+            {
+              "name": {"en": "Special Instructions", "zh": "特殊指示", "it": "Istruzioni speciali"},
+              "options": [
+                {
+                  "name": {"en": "No Lettuce", "zh": "不要生菜", "it": "Senza lattuga"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "No Tomato", "zh": "不要番茄", "it": "Senza pomodoro"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "No Onions", "zh": "不要洋葱", "it": "Senza cipolle"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "Extra Sauce", "zh": "额外酱料", "it": "Extra Salsa"},
+                  "price": 0.50
+                }
+              ],
+              "maxSelect": 3
+            }
+          ]
+        },
+        {
+          "id": "cheese-burger",
+          "category": {"en": "Burgers", "zh": "汉堡", "it": "Hamburger"},
+          "sort_order": 0,
+          "name": {"en": "Cheese Burger", "zh": "芝士汉堡", "it": "Hamburger con formaggio"},
+          "description": {"en": "Classic burger with melted cheddar cheese", "zh": "经典汉堡配融化芝士", "it": "Hamburger classico con formaggio fuso"},
+          "price": 13.99,
+          "image_url": "https://placehold.co/200/png",
+          "customizations": [
+            {
+              "name": {"en": "Cheese Type", "zh": "芝士种类", "it": "Tipo di formaggio"},
+              "options": [
+                {
+                  "name": {"en": "Cheddar", "zh": "切达芝士", "it": "Cheddar"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "Swiss", "zh": "瑞士芝士", "it": "Formaggio svizzero"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "American", "zh": "美式芝士", "it": "Formaggio americano"},
+                  "price": 0
+                }
+              ],
+              "maxSelect": 1
+            },
+            {
+              "name": {"en": "Add-ons", "zh": "加料", "it": "Extra"},
+              "options": [
+                {
+                  "name": {"en": "Bacon", "zh": "培根", "it": "Prosciutto"},
+                  "price": 1.50
+                },
+                {
+                  "name": {"en": "Extra Cheese", "zh": "额外芝士", "it": "Extra Formaggio"},
+                  "price": 1.50
+                },
+                {
+                  "name": {"en": "Extra Patty", "zh": "额外肉饼", "it": "Extra Patty"},
+                  "price": 4.99
+                },
+                {
+                  "name": {"en": "Jalapeños", "zh": "墨西哥辣椒", "it": "Jalapeños"},
+                  "price": 1.50
+                },
+                {
+                  "name": {"en": "Avocado", "zh": "牛油果", "it": "Avocado"},
+                  "price": 1.50
+                }
+              ],
+              "maxSelect": 0
+            },
+            {
+              "name": {"en": "Cooking Preference", "zh": "烹饪偏好", "it": "Preferenze di cottura"},
+              "options": [
+                {
+                  "name": {"en": "Regular", "zh": "普通", "it": "Normale"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "Well Done", "zh": "全熟", "it": "Bollito"},
+                  "price": 0
+                },
+                {
+                  "name": {"en": "Medium Rare", "zh": "半熟", "it": "Mezza"},
+                  "price": 0
+                }
+              ],
+              "maxSelect": 1
+            }
+          ]
+        },
+        {
+          "id": "fries",
+          "category": {"en": "Sides", "zh": "配菜", "it": "Contorni"},
+          "sort_order": 1,
+          "name": {"en": "French Fries", "zh": "法式薯条", "it": "Fries"},
+          "description": {"en": "Crispy golden fries with sea salt", "zh": "酥脆金黄薯条配海盐", "it": "Fritte di patate croccanti con sale marina"},
+          "price": 4.99,
+          "image_url": "https://placehold.co/200/png"
+        },
+        {
+          "id": "onion-rings",
+          "category": {"en": "Sides", "zh": "配菜", "it": "Contorni"},
+          "sort_order": 0,
+          "name": {"en": "Onion Rings", "zh": "洋葱圈", "it": "Anelli di cipolla"},
+          "description": {"en": "Crispy battered onion rings", "zh": "酥脆炸洋葱圈", "it": "Anelli di cipolla fritte"},
+          "price": 5.99,
+          "image_url": "https://placehold.co/200/png"
+        },
+        {
+          "id": "cola",
+          "category": {"en": "Drinks", "zh": "饮料", "it": "Bevande"},
+          "sort_order": 0,
+          "name": {"en": "Cola", "zh": "可乐", "it": "Coca-Cola"},
+          "description": {"en": "Ice-cold cola", "zh": "冰凉可乐", "it": "Coca-Cola gelata"},
+          "price": 2.99,
+          "image_url": "https://placehold.co/200/png"
+        },
+        {
+          "id": "milkshake",
+          "category": {"en": "Drinks", "zh": "饮料", "it": "Bevande"},
+          "sort_order": 1,
+          "name": {"en": "Vanilla Milkshake", "zh": "香草奶昔", "it": "Milkshake al cioccolato"},
+          "description": {"en": "Creamy vanilla milkshake", "zh": "香草奶昔", "it": "Milkshake al cioccolato"},
+          "price": 5.99,
+          "image_url": "https://placehold.co/200/png"
+        },
+        {
+          "id": "water",
+          "category": {"en": "Drinks", "zh": "饮料", "it": "Bevande"},
+          "sort_order": 0,
+          "name": {"en": "Water", "zh": "水", "it": "Acqua"},
+          "description": {"en": "Ice-cold water", "zh": "冰凉水", "it": "Acqua gelata"},
+          "price": 1.99,
+          "image_url": "https://placehold.co/200/png"
+        },
+        {
+          "id": "ice-tea",
+          "category": {"en": "Drinks", "zh": "饮料", "it": "Bevande"},
+          "sort_order": 2,
+          "name": {"en": "Ice Tea", "zh": "冰茶", "it": "Tè gelato"},
+          "description": {"en": "Ice-cold tea", "zh": "冰凉茶", "it": "Tè gelato"},
+          "price": 2.99,
+          "image_url": "https://placehold.co/200/png"
+        }
+      ]
+    },
+    {
+      "id": "store2",
+      "name": {"en": "Pizza Corner", "zh": "披萨角落", "it": "Pizzeria"},
+      "description": {"en": "Authentic Italian pizzas made to order", "zh": "正宗意大利披萨现做现烤", "it": "Pizze italiane fatte su misura"},
+      "image_url": "https://placehold.co/400/png",
+      "tags": {"en": ["In-store", "20-25 min", "Reservation recommended"], "zh": ["内用", "20-25分钟", "推荐预约"], "it": ["In-store", "20-25 min", "Reservation recommended"]}
+    },
+    {
+      "id": "store3",
+      "name": {"en": "Sushi Bar", "zh": "寿司吧", "it": "Sushi Bar"},
+      "description": {"en": "Fresh sushi and Japanese cuisine", "zh": "新鲜寿司和日式料理", "it": "Sushi freschi e cucina giapponese"},
+      "image_url": "https://placehold.co/400/png",
+      "tags": null
+    }
+  ]
+}
