@@ -76,7 +76,7 @@ export default function StoreDetails() {
             <div className="hours-list">
               {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
                 <div key={day} className="hours-item">
-                  <span className="day">{day}</span>
+                  <span className="day">{t(`days.${day}`)}</span>
                   <span className="hours">{store.store_info.hours[day]}</span>
                 </div>
               ))}

@@ -10,6 +10,15 @@
   "language": {
     "switch": "Cambia Lingua"
   },
+  "days": {
+    "Mon": "Lunedì",
+    "Tue": "Martedì", 
+    "Wed": "Mercoledì",
+    "Thu": "Giovedì",
+    "Fri": "Venerdì",
+    "Sat": "Sabato",
+    "Sun": "Domenica"
+  },
   "store": {
     "title": "Negozio",
     "menu": "Menu",
@@ -25,6 +34,7 @@
     "errorFetchingTable": "Errore nel recuperare le informazioni del tavolo",
     "confirm": "Conferma",
     "exit": "Esci",
+    "close": "Chiudi",
     "searchItems": "Cerca elementi del menu...",
     "searchResults": "Risultati della Ricerca",
     "notFound": "Negozio non trovato",
@@ -39,7 +49,13 @@
     "ordering": "Seleziona Tipo di Ordine:",
     "featured": "Consigliati",
     "errorSelectOrderType": "Per favore seleziona un tipo di ordine",
-    "redirectingIn": "Raggiungerò in:"
+    "redirectingIn": "Raggiungerò in:",
+    "whatWouldYouLikeToDo": "Cosa vorresti fare?",
+    "orderInStore": "Ordina in Negozio",
+    "orderPickup": "Ordina per Ritiro",
+    "orderDelivery": "Ordina per Consegna",
+    "makeReservation": "Fai una Prenotazione",
+    "justBrowsing": "Continua a Navigare"
   },
   "item": {
     "description": "Descrizione",

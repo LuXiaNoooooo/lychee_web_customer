@@ -10,6 +10,15 @@
   "language": {
     "switch": "Switch Language"
   },
+  "days": {
+    "Mon": "Monday",
+    "Tue": "Tuesday", 
+    "Wed": "Wednesday",
+    "Thu": "Thursday",
+    "Fri": "Friday",
+    "Sat": "Saturday",
+    "Sun": "Sunday"
+  },
   "store": {
     "title": "Store",
     "menu": "Menu",
