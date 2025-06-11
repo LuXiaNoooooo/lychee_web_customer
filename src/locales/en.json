@@ -40,7 +40,13 @@
     "ordering": "Select Order Type:",
     "featured": "Featured",
     "errorSelectOrderType": "Please select an order type",
-    "redirectingIn": "Redirecting in:"
+    "redirectingIn": "Redirecting in:",
+    "whatWouldYouLikeToDo": "What would you like to do?",
+    "orderInStore": "Order In-store",
+    "orderPickup": "Order for Pickup",
+    "orderDelivery": "Order for Delivery",
+    "makeReservation": "Make a Reservation",
+    "justBrowsing": "Continue Browsing"
   },
   "item": {
     "description": "Description",

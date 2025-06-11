@@ -2,10 +2,11 @@ import { useStore, selectOrderType, selectTableNumber } from '../store';
 import { useTranslation } from 'react-i18next';
 import { useState, useRef, useEffect } from 'react';
 import { MdSettings, MdStorefront, MdShoppingBasket, MdArrowDropDown, MdDeliveryDining } from 'react-icons/md';
-import { getTable, getStore } from '../database';
+import { getStore } from '../database';
 import AlertPopup from './AlertPopup';
 import { useSearchParams } from 'react-router-dom';
 import { createPortal } from 'react-dom';
+import { resetTable, resetOrder, handleTableCode } from '../utils/orderTypeUtils';
 
 export default function OrderTypeSwitcher() {
   const { t } = useTranslation();
@@ -28,6 +29,15 @@ export default function OrderTypeSwitcher() {
   const setOrderId = useStore(state => state.setOrderId);
   const storeId = useStore(state => state.currentStore);
 
+  const handlers = {
+    setOrderType,
+    setTableNumber,
+    setTableCode,
+    setOrderStatus,
+    setOrderNumber,
+    setOrderId
+  };
+
   // Fetch store data to check supported order types
   useEffect(() => {
     if (storeId) {
@@ -49,7 +59,18 @@ export default function OrderTypeSwitcher() {
     if (orderTypeFromUrl) {
       if (orderTypeFromUrl == 'In-store') {
         if (tableCodeFromUrl && storeId) {
-          handleTableCode(storeId, tableCodeFromUrl);
+          handleTableCode(storeId, tableCodeFromUrl, store, handlers, {
+            onSuccess: () => {
+              setShowTablePopup(false);
+              setIsOpen(false);
+            },
+            onError: (message) => {
+              setAlertMessage(t(message));
+              setShowAlert(true);
+              setShowTablePopup(false);
+              setIsOpen(false);
+            }
+          });
         }
       } else if (orderTypeFromUrl == 'Pickup') {
         if (!store.supported_order_types.includes('Pickup')) {
@@ -68,11 +89,6 @@ export default function OrderTypeSwitcher() {
           setOrderType('Delivery');
         }
       }
-      return;
-    }
-    if (orderType == 'Not Selected') {
-      setAlertMessage(t('store.errorSelectOrderType'));
-      setShowAlert(true);
     }
   }, [searchParams, storeId, orderType, store]);
 
@@ -87,17 +103,6 @@ export default function OrderTypeSwitcher() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const resetTable = () => {
-    setTableNumber(null);
-    setTableCode(null);
-  }
-
-  const resetOrder = () => {
-    setOrderStatus(null);
-    setOrderNumber(null);
-    setOrderId(null);
-  }
-
   const handlePickupClick = () => {
     if (!store?.supported_order_types?.includes('Pickup')) {
       setAlertMessage(store?.services?.pay_online === false ?
@@ -107,8 +112,8 @@ export default function OrderTypeSwitcher() {
       return;
     }
     setOrderType('Pickup');
-    resetTable();
-    resetOrder();
+    resetTable(handlers);
+    resetOrder(handlers);
     setIsOpen(false);
   };
 
@@ -129,8 +134,8 @@ export default function OrderTypeSwitcher() {
       return;
     }
     setOrderType('Delivery');
-    resetTable();
-    resetOrder();
+    resetTable(handlers);
+    resetOrder(handlers);
     setIsOpen(false);
   };
 
@@ -138,37 +143,20 @@ export default function OrderTypeSwitcher() {
     setShowTablePopup(false);
   };
 
-  const handleTableCode = (storeId: string, tableCode: string) => {
-    getTable(storeId, tableCode)
-      .then(table => {
-        if (table) {
-          setOrderType('In-store');
-          setTableNumber(table.table_number);
-          setTableCode(tableCode);
-          if (table.status === 'Occupied' && store?.settings?.pay_later === true) {
-            setOrderStatus('Pending');
-            setOrderId(table.order_id);
-          } else {
-            resetOrder();
-          }
-        } else {
-          setAlertMessage(t('store.tableNotFound'));
-          setShowAlert(true);
-        }
-        setShowTablePopup(false);
-        setIsOpen(false);
-      })
-      .catch(() => {
-        setAlertMessage(t('store.errorFetchingTable'));
-        setShowAlert(true);
-        setShowTablePopup(false);
-        setIsOpen(false);
-      });
-  };
-
   const handleTableCodeSubmit = () => {
     if (storeId && inputTableCode) {
-      handleTableCode(storeId, inputTableCode);
+      handleTableCode(storeId, inputTableCode, store, handlers, {
+        onSuccess: () => {
+          setShowTablePopup(false);
+          setIsOpen(false);
+        },
+        onError: (message) => {
+          setAlertMessage(t(message));
+          setShowAlert(true);
+          setShowTablePopup(false);
+          setIsOpen(false);
+        }
+      });
     }
   };
 

@@ -12,6 +12,7 @@ import { IoArrowBack, IoSearch, IoClose } from 'react-icons/io5'
 import { MdCalendarMonth, MdPhone, MdLocationOn, MdAccessTime, MdChevronRight } from 'react-icons/md'
 import { Item } from './Item'
 import AlertPopup from '../components/AlertPopup'
+import OrderTypePopup from '../components/OrderTypePopup'
 
 interface CategoryGroup {
   id: string
@@ -40,6 +41,7 @@ export default function Store() {
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage] = useState('')
   const hasFetchedStore = useRef(false)
+  const [showOrderTypePopup, setShowOrderTypePopup] = useState(false)
 
   // Group items by category
   const categories = store?.items?.reduce((acc: CategoryGroup[], item: Item) => {
@@ -106,12 +108,15 @@ export default function Store() {
         .then(data => {
           setStore(data)
           setCurrencySymbol(data?.currency || 'usd')
+          if (orderType === 'Not Selected') {
+            setShowOrderTypePopup(true)
+          }
         })
         .catch(() => {
           console.error('Error fetching store')
         })
     }
-  }, [storeId, setCurrentStore, setCurrencySymbol])
+  }, [storeId, setCurrentStore, setCurrencySymbol, orderType])
 
   const handleScroll = useCallback(() => {
     if (menuRef.current && searchRef.current) {
@@ -295,6 +300,11 @@ export default function Store() {
       </div>
 
       <Cart withCheckout={orderType === 'In-store' && orderStatus === 'Pending' && store?.settings.pay_later === true} />
+
+      {showOrderTypePopup && createPortal(
+        <OrderTypePopup onClose={() => setShowOrderTypePopup(false)} />,
+        document.body
+      )}
 
       {showAlert && createPortal(
         <AlertPopup
