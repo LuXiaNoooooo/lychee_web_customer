@@ -4,7 +4,6 @@
       "email": "hyjerrytang@gmail.com",
       "password": "test1234",
       "id": "store1",
-      "connect_id": "acct_1RI1ikH0Ec04w6EV",
       "name": {"en": "Burger Place", "zh": "汉堡店", "it": "Burger Place"},
       "description": {"en": "Classic American burgers and sides", "zh": "经典美式汉堡和配菜", "it": "Hamburger classici e lati"},
       "image_url": "https://www.foodandwine.com/thmb/jldKZBYIoXJWXodRE9ut87K8Mag=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg",
