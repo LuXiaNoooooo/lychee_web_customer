@@ -368,6 +368,7 @@ body {
   outline: none;
   font-size: 1rem;
   background: transparent;
+  color: var(--text-primary);
 }
 
 .clear-search {
