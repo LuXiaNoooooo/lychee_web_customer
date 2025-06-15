@@ -96,7 +96,8 @@
     "orderPaid": "订单已支付",
     "emailNotification": "对于自取和外卖订单，请查看您的邮箱获取订单更新。您将在以下情况收到通知：",
     "emailNotification1": "您的订单已收到（刚刚发送）",
-    "emailNotification2": "商家接受您的订单"
+    "emailNotification2": "商家接受您的订单",
+    "navigationWarning": "您已完成订单。如果您离开此页面，可能无法检索您的订单信息。您确定要离开吗？"
   },
   "reservation": {
     "title": "预订座位",

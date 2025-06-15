@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { IoArrowBack } from 'react-icons/io5'
 import { useTranslation } from 'react-i18next'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
@@ -8,6 +8,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { API_URL } from '../config'
 import AlertPopup from '../components/AlertPopup'
+import ConfirmPopup from '../components/ConfirmPopup'
 import { Item } from './Item'
 import { createPortal } from 'react-dom'
 
@@ -27,6 +28,7 @@ export default function Checkout() {
   const [email, setEmail] = useState('')
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
+  const [showConfirm, setShowConfirm] = useState(false)
   const orderId = useStore(selectOrderId)
   const setOrderId = useStore(state => state.setOrderId)
   const [order, setOrder] = useState<Order | null>(null)
@@ -40,11 +42,15 @@ export default function Checkout() {
   const clearCart = useStore(state => state.clearCart)
   const currencySymbol = useStore(selectCurrencySymbol)
   const [isProcessing, setIsProcessing] = useState(false)
+  const navigate = useNavigate()
 
   let subtotal_amount = 0
   let tax_amount = 0
   let total_amount = 0
   let orderItems: CartItem[] = []
+
+  // Determine if we should block navigation
+  const shouldBlockNavigation = order?.status === 'Completed' || (order?.status === 'Pending' && orderType !== 'In-store')
 
   // Handle store and orders
   useEffect(() => {
@@ -67,10 +73,10 @@ export default function Checkout() {
           setOrderNumber(order.order_number || null)
           setOrderStatus(order.status || null)
           if (order.status === 'Completed' || (order.status === 'Pending' && orderType !== 'In-store')) {
-            setTableNumber(null);
-            setTableCode(null);
-            setOrderType('Not Selected');
-            clearCart();
+            setTableNumber(null)
+            setTableCode(null)
+            setOrderType('Not Selected')
+            clearCart()
           }
         }
       })
@@ -121,12 +127,12 @@ export default function Checkout() {
     tax_amount: tax_amount.toFixed(2),
     notes: notes,
     return_url: `${window.location.origin}/checkout/${storeId}`
-  };
+  }
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (isProcessing) return;
-    setIsProcessing(true);
+    if (isProcessing) return
+    setIsProcessing(true)
 
     if (!executeRecaptcha) {
       console.error('reCAPTCHA not loaded')
@@ -159,13 +165,35 @@ export default function Checkout() {
     }
   }
 
+  // Custom navigation handler
+  const handleNavigation = (e: React.MouseEvent) => {
+    if (shouldBlockNavigation) {
+      e.preventDefault();
+      setShowConfirm(true);
+    } else {
+      navigate(`/store/${storeId}`);
+    }
+  };
+
+  const handleConfirmNavigation = () => {
+    setShowConfirm(false);
+    navigate(`/store/${storeId}`);
+  };
+
+  const handleCancelNavigation = () => {
+    setShowConfirm(false);
+  };
+
   return (
     <div className="page-container checkout-page">
       {isProcessing && <div className="overlay-disabled" />}
       <div className="header-section">
-        <Link to={`/store/${storeId}`} className="small-button">
+        <button 
+          className="small-button" 
+          onClick={handleNavigation}
+        >
           <IoArrowBack /> {t('store.menu')}
-        </Link>
+        </button>
         <h2 className="store-name">
           {orderNumber ?
             <>
@@ -248,8 +276,8 @@ export default function Checkout() {
               <button 
                 className="big-button"
                 onClick={() => {
-                  setAlertMessage(t('checkout.inStorePaymentMessage') + ' ' + orderNumber);
-                  setShowAlert(true);
+                  setAlertMessage(t('checkout.inStorePaymentMessage') + ' ' + orderNumber)
+                  setShowAlert(true)
                 }}
               >
                 {t('checkout.inStorePayment')}
@@ -274,8 +302,8 @@ export default function Checkout() {
                 <button 
                   className="big-button disabled" 
                   onClick={() => {
-                    setAlertMessage(t('store.notAvailableNoOnlinePayments'));
-                    setShowAlert(true);
+                    setAlertMessage(t('store.notAvailableNoOnlinePayments'))
+                    setShowAlert(true)
                   }}
                   disabled={true}
                 >
@@ -321,9 +349,18 @@ export default function Checkout() {
         <AlertPopup
           message={alertMessage}
           onClose={() => {
-            setShowAlert(false);
-            setIsProcessing(false);
+            setShowAlert(false)
+            setIsProcessing(false)
           }}
+        />,
+        document.body
+      )}
+
+      {showConfirm && createPortal(
+        <ConfirmPopup
+          message={t('checkout.navigationWarning')}
+          onConfirm={handleConfirmNavigation}
+          onCancel={handleCancelNavigation}
         />,
         document.body
       )}

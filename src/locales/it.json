@@ -96,7 +96,8 @@
     "orderPaid": "Ordine Pagato",
     "emailNotification": "Per gli ordini da asporto e consegna, controlla la tua email per gli aggiornamenti dell'ordine. Riceverai notifiche quando:",
     "emailNotification1": "Il tuo ordine è stato ricevuto (appena inviato)",
-    "emailNotification2": "Il commerciante accetta il tuo ordine"
+    "emailNotification2": "Il commerciante accetta il tuo ordine",
+    "navigationWarning": "Hai completato un ordine. Se lasci questa pagina, potresti non essere in grado di recuperare le informazioni del tuo ordine. Sei sicuro di voler uscire?"
   },
   "reservation": {
     "title": "Prenota Tavolo",

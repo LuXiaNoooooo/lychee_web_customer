@@ -95,7 +95,8 @@
     "orderPaid": "Order Paid",
     "emailNotification": "For pickup and delivery orders, please check your email for order updates. You will receive notifications when:",
     "emailNotification1": "Your order is received (just sent)",
-    "emailNotification2": "The merchant accepts your order"
+    "emailNotification2": "The merchant accepts your order",
+    "navigationWarning": "You have completed an order. If you leave this page, you may not be able to retrieve your order information. Are you sure you want to leave?"
   },
   "reservation": {
     "name": "Name",
