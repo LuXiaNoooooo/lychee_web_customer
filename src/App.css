@@ -9,19 +9,19 @@
   --text-secondary: #666;
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-  font-size: 16px; /* Base font size for desktop */
+  font-size: 18px; /* Standard base font size for desktop */
 }
 
 /* Mobile font size adjustment */
 @media (max-width: 768px) {
   :root {
-    font-size: 14px; /* Slightly smaller base font size for tablets */
+    font-size: 16px; /* Slightly smaller for tablets but still readable */
   }
 }
 
 @media (max-width: 480px) {
   :root {
-    font-size: 12px; /* Even smaller base font size for mobile phones */
+    font-size: 14px; /* Readable size for mobile phones */
   }
 }
 
@@ -81,11 +81,8 @@ body {
 
 .banner {
   text-align: left;
-  padding: 4rem 1.5rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
-              url('https://vcedzupvxcpdkdkesfaq.supabase.co/storage/v1/object/public/shop/back.png');
-  background-size: cover;
-  background-position: top center;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  background: var(--primary-color);
   position: relative;
 }
 
@@ -98,7 +95,7 @@ body {
 
 .banner p {
   margin: 0.5rem 0 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -113,11 +110,23 @@ body {
   z-index: 100;
 }
 
+.banner-logo-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.banner-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
 .section-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
   color: var(--text-primary);
 }
 

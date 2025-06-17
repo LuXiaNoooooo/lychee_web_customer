@@ -20,7 +20,10 @@ export default function Home() {
     <div className="page-container">
       <div className="banner">
         <div className="banner-content banner-title">
-          <h1>{t('banner.title')}</h1>
+          <div className="banner-logo-title">
+            <img src="/lychee-logo.png" alt="Lychee Logo" className="banner-logo" />
+            <h1>{t('banner.title')}</h1>
+          </div>
           <LanguageSwitcher />
         </div>
         <div className="banner-content">

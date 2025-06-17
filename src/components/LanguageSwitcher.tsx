@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useState, useRef, useEffect } from 'react';
-import { IoLanguage } from 'react-icons/io5';
-import { MdArrowDropDown } from 'react-icons/md';
+import { LuGlobe, LuChevronDown } from 'react-icons/lu';
+
 const languages = {
   en: { short: 'EN', full: 'English' },
-  zh: { short: '中', full: '中文' },
+  zh: { short: '中文', full: '中文' },
   it: { short: 'IT', full: 'Italiano' },
 };
 
@@ -25,6 +25,11 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const getCurrentLanguage = () => {
+    return i18n.language === "zh" ? "中文" : 
+           i18n.language === "it" ? "IT" : "EN";
+  };
+
   return (
     <div ref={dropdownRef} className="dropdown">
       <button 
@@ -32,8 +37,9 @@ export default function LanguageSwitcher() {
         title={t('language.switch')}
         className="small-button small-button--dropdown"
       >
-        <IoLanguage /> {languages[i18n.language as keyof typeof languages].short}
-        <MdArrowDropDown />
+        <LuGlobe />
+        <span>{getCurrentLanguage()}</span>
+        <LuChevronDown />
       </button>
 
       {isOpen && (
