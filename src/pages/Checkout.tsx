@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { IoArrowBack } from 'react-icons/io5'
 import { useTranslation } from 'react-i18next'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
