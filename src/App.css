@@ -170,7 +170,7 @@ body {
 }
 
 .recent-store-card {
-  width: 25%;
+  width: 25vw;
   text-align: center;
   flex: 0 0 auto;
   cursor: pointer;
@@ -194,7 +194,8 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 140px;
+  width: 100%;
+  text-align: center;
   color: var(--text-primary);
   font-size: 0.95rem;
 }
@@ -216,7 +217,7 @@ body {
 }
 
 .store-image {
-  width: 25%;
+  width: 25vw;
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 8px;
