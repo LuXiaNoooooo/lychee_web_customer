@@ -170,7 +170,7 @@ body {
 }
 
 .recent-store-card {
-  width: 25vw;
+  width: min(25vw, calc(var(--page-width) * 0.25));
   text-align: center;
   flex: 0 0 auto;
   cursor: pointer;
@@ -217,7 +217,7 @@ body {
 }
 
 .store-image {
-  width: 25vw;
+  width: min(25vw, calc(var(--page-width) * 0.25));
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 8px;
