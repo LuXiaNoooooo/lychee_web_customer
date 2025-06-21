@@ -60,14 +60,15 @@ export default function Store() {
     }
 
     // Add to regular category
-    const categoryId = item.category[lang]?.toLowerCase().replace(/\s+/g, '-') ?? item.category['en'].toLowerCase().replace(/\s+/g, '-')
+    const categoryName = item.category[lang] ?? item.category['en'] ?? 'Other'
+    const categoryId = categoryName.toLowerCase().replace(/\s+/g, '-')
     const existingCategory = acc.find(c => c.id === categoryId)
     if (existingCategory) {
       existingCategory.items.push(item)
     } else {
       acc.push({
         id: categoryId,
-        name: item.category[lang] ?? item.category['en'],
+        name: categoryName,
         items: [item]
       })
     }
@@ -146,10 +147,12 @@ export default function Store() {
   }, [handleScroll])
 
   // Filter items based on search query
-  const filteredItems = store?.items?.filter((item: Item) =>
-    (item.name[lang] ?? item.name['en']).toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (item.description[lang] ?? item.description['en']).toLowerCase().includes(searchQuery.toLowerCase())
-  ) || []
+  const filteredItems = store?.items?.filter((item: Item) => {
+    const itemName = item.name[lang] ?? item.name['en'] ?? ''
+    const itemDescription = item.description[lang] ?? item.description['en'] ?? ''
+    return itemName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+           itemDescription.toLowerCase().includes(searchQuery.toLowerCase())
+  }) || []
 
   return (
     <div className="page-container">
