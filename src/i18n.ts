@@ -15,7 +15,7 @@ i18n
       zh: { translation: zhTranslations },
       it: { translation: itTranslations }
     },
-    lng: storedLanguage, //  Use stored language or default to English
+    lng: storedLanguage, //   Use stored language or default to English
     fallbackLng: "en",
     interpolation: {
       escapeValue: false
