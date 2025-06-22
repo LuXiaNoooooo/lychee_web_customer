@@ -14,14 +14,18 @@ export default function StoreDetails() {
   const [store, setStore] = useState<Store | null>(null)
 
   // Detect if user is on mobile device
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                   ('ontouchstart' in window) || 
-                   (navigator.maxTouchPoints > 0)
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+  const isAndroid = /Android/i.test(navigator.userAgent)
 
   const getMapUrl = (address: string) => {
-    if (isMobile) {
+    if (isIOS) {
+      // Use maps: protocol for iOS devices (Safari)
+      return `maps:?q=${encodeURIComponent(address)}`
+    } else if (isAndroid) {
+      // Use geo: protocol for Android devices
       return `geo:0,0?q=${encodeURIComponent(address)}`
     } else {
+      // Use Google Maps for desktop
       return `https://maps.google.com/maps?q=${encodeURIComponent(address)}`
     }
   }
@@ -86,7 +90,7 @@ export default function StoreDetails() {
           {store?.store_info?.address ? (
             <a 
               href={getMapUrl(store.store_info.address)}
-              {...(!isMobile && { target: "_blank", rel: "noopener noreferrer" })}
+              {...(!(isIOS || isAndroid) && { target: "_blank", rel: "noopener noreferrer" })}
               className="clickable-detail address-link"
             >
               <MdOpenInNew className="action-icon" />
