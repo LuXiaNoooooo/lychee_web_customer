@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { IoArrowBack } from 'react-icons/io5'
-import { MdPhone, MdLocationOn, MdAccessTime } from 'react-icons/md'
+import { MdPhone, MdLocationOn, MdAccessTime, MdCall, MdOpenInNew } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../components/LanguageSwitcher'
 import { getStore } from '../database'
@@ -54,7 +54,14 @@ export default function StoreDetails() {
           <MdPhone className="detail-icon" /> <h3>{t('store.phone')}</h3>
         </div>
         <div className="detail-content">
-          <p>{store?.store_info?.number || t('store.notAvailable')}</p>
+          {store?.store_info?.number ? (
+            <a href={`tel:${store.store_info.number}`} className="clickable-detail phone-link">
+              <MdCall className="action-icon" />
+              {store.store_info.number}
+            </a>
+          ) : (
+            <p>{t('store.notAvailable')}</p>
+          )}
         </div>
       </div>
 
@@ -63,7 +70,19 @@ export default function StoreDetails() {
           <MdLocationOn className="detail-icon" /> <h3>{t('store.address')}</h3>
         </div>
         <div className="detail-content">
-          <p>{store?.store_info?.address || t('store.notAvailable')}</p>
+          {store?.store_info?.address ? (
+            <a 
+              href={`https://maps.google.com/maps?q=${encodeURIComponent(store.store_info.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="clickable-detail address-link"
+            >
+              <MdOpenInNew className="action-icon" />
+              {store.store_info.address}
+            </a>
+          ) : (
+            <p>{t('store.notAvailable')}</p>
+          )}
         </div>
       </div>
 

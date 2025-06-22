@@ -1251,6 +1251,40 @@ body {
   color: #666;
 }
 
+/* Clickable Detail Links */
+.clickable-detail {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.clickable-detail:hover {
+  color: #c12e3a;
+  text-decoration: underline;
+}
+
+.clickable-detail .action-icon {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.clickable-detail:hover .action-icon {
+  transform: scale(1.1);
+}
+
+.phone-link {
+  cursor: pointer;
+}
+
+.address-link {
+  cursor: pointer;
+}
+
 /* Store Info Link */
 .info-links {
   display: flex;
