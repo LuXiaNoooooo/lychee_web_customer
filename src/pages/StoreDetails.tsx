@@ -13,6 +13,19 @@ export default function StoreDetails() {
   const lang = useTranslation().i18n.language || 'en'
   const [store, setStore] = useState<Store | null>(null)
 
+  // Detect if user is on mobile device
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   ('ontouchstart' in window) || 
+                   (navigator.maxTouchPoints > 0)
+
+  const getMapUrl = (address: string) => {
+    if (isMobile) {
+      return `geo:0,0?q=${encodeURIComponent(address)}`
+    } else {
+      return `https://maps.google.com/maps?q=${encodeURIComponent(address)}`
+    }
+  }
+
   useEffect(() => {
     if (storeId) {
       getStore(storeId)
@@ -72,9 +85,8 @@ export default function StoreDetails() {
         <div className="detail-content">
           {store?.store_info?.address ? (
             <a 
-              href={`https://maps.google.com/maps?q=${encodeURIComponent(store.store_info.address)}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={getMapUrl(store.store_info.address)}
+              {...(!isMobile && { target: "_blank", rel: "noopener noreferrer" })}
               className="clickable-detail address-link"
             >
               <MdOpenInNew className="action-icon" />
