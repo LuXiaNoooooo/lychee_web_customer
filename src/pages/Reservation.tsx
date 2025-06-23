@@ -154,10 +154,8 @@ export default function Reservation() {
       return
     }
 
-    // Combine date and time into ISO string with timezone offset
-    const reservationDateTime = new Date(`${formData.date}T${formData.time}`)
-    // Convert to UTC and format with timezone offset
-    const reservationTime = reservationDateTime.toISOString().replace('Z', '+00:00')
+    // Combine date and time as local timestamp (no timezone conversion)
+    const reservationTime = `${formData.date}T${formData.time}:00`
 
     const reservationData = {
       store_id: storeId,
