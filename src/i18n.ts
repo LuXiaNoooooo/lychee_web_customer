@@ -22,4 +22,9 @@ i18n
     }
   });
 
+// Save language changes to sessionStorage automatically
+i18n.on('languageChanged', (lng) => {
+  sessionStorage.setItem('i18nextLng', lng);
+});
+
 export default i18n; 

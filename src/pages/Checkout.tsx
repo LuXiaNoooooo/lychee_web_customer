@@ -337,13 +337,13 @@ export default function Checkout() {
                   <p>{t('checkout.pickupMessage')}</p>
                 </div>
               ) : (
-                <div className="email-notification-message">
-                  <p>{t('checkout.emailNotification')}</p>
-                  <ul>
+          <div className="email-notification-message">
+            <p>{t('checkout.emailNotification')}</p>
+            <ul>
                     <li>• {t('checkout.emailNotification1')}</li>
                     <li>• {t('checkout.emailNotification2')}</li>
-                  </ul>
-                </div>
+            </ul>
+          </div>
               )}
             </>
           )}

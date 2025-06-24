@@ -95,7 +95,7 @@
     "email": "请输入您的邮箱",
     "emailRequired": "请输入有效的邮箱地址",
     "orderPaid": "订单已支付",
-    "emailNotification": "请等待商家接受您的订单。您将在以下情况收到通知：",
+    "emailNotification": "请等待商家接受您的订单。您将在以下情况收到邮件通知：",
     "emailNotification1": "您的订单已收到（刚刚发送）",
     "emailNotification2": "商家接受您的订单",
     "pickupMessage": "您的订单已被接受，您现在可以前往商家取餐了",
