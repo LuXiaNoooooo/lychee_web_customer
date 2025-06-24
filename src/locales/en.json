@@ -88,15 +88,17 @@
     "inStorePayment": "In-Store Payment",
     "inStorePaymentMessage": "Please pay at the counter \n Order Number:",
     "addNotes": "Add notes here",
-    "paid": "Paid",
     "unpaid": "Unpaid",
+    "accepted": "Accepted",
+    "pending": "Pending",
     "email": "Enter your email",
     "emailRequired": "Please enter a valid email address",
     "orderPaid": "Order Paid",
-    "emailNotification": "For pickup and delivery orders, please check your email for order updates. You will receive notifications when:",
+    "emailNotification": "Please wait for the merchant to accept your order. You will receive email notifications when:",
     "emailNotification1": "Your order is received (just sent)",
     "emailNotification2": "The merchant accepts your order",
-    "navigationWarning": "You have completed an order. If you leave this page, you may not be able to retrieve your order information. Are you sure you want to leave?"
+    "pickupMessage": "Your order has been accepted, you can now proceed to the merchant to pick up your order",
+    "navigationWarning": "Do you want to start over? You may lose your current order information."
   },
   "reservation": {
     "name": "Name",

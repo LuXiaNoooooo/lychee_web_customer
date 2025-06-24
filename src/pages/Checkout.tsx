@@ -72,12 +72,6 @@ export default function Checkout() {
           setOrder(order)
           setOrderNumber(order.order_number || null)
           setOrderStatus(order.status || null)
-          if (order.status === 'Completed' || (order.status === 'Pending' && orderType !== 'In-store')) {
-            setTableNumber(null)
-            setTableCode(null)
-            setOrderType('Not Selected')
-            clearCart()
-          }
         }
       })
     }
@@ -177,6 +171,10 @@ export default function Checkout() {
 
   const handleConfirmNavigation = () => {
     setShowConfirm(false);
+    setTableNumber(null)
+    setTableCode(null)
+    setOrderType('Not Selected')
+    clearCart()
     navigate(`/store/${storeId}`);
   };
 
@@ -198,7 +196,7 @@ export default function Checkout() {
           {orderNumber ?
             <>
               {t('checkout.orderNumber') + orderNumber}
-              {' - '} {orderStatus === 'Completed' || (orderStatus === 'Pending' && orderType !== 'In-store') ? t('checkout.paid') : t('checkout.unpaid')}
+              {' - '} {orderStatus === 'Completed' ? t('checkout.accepted') : (orderStatus === 'Pending' && orderType !== 'In-store') ? t('checkout.pending') : t('checkout.unpaid')}
             </>
             : t('checkout.orderSummary')}
         </h2>
@@ -332,13 +330,23 @@ export default function Checkout() {
         </div>
       ) : (
         <div className="payment-buttons single">
-          <div className="email-notification-message">
-            <p>{t('checkout.emailNotification')}</p>
-            <ul>
-              <li>✓ {t('checkout.emailNotification1')}</li>
-              <li>✓ {t('checkout.emailNotification2')}</li>
-            </ul>
-          </div>
+          {orderType !== 'In-store' && (
+            <>
+              {orderStatus === 'Completed' ? (
+                <div className="email-notification-message">
+                  <p>{t('checkout.pickupMessage')}</p>
+                </div>
+              ) : (
+                <div className="email-notification-message">
+                  <p>{t('checkout.emailNotification')}</p>
+                  <ul>
+                    <li>• {t('checkout.emailNotification1')}</li>
+                    <li>• {t('checkout.emailNotification2')}</li>
+                  </ul>
+                </div>
+              )}
+            </>
+          )}
           <button className="big-button disabled">
             {t('checkout.orderPaid')}
           </button>

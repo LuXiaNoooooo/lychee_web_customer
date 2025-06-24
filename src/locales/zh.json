@@ -89,15 +89,17 @@
     "inStorePayment": "店内支付",
     "inStorePaymentMessage": "请到柜台付款 \n 订单号:",
     "addNotes": "添加备注",
-    "paid": "已付款",
     "unpaid": "未付款",
+    "accepted": "已接单",
+    "pending": "待接单",
     "email": "请输入您的邮箱",
     "emailRequired": "请输入有效的邮箱地址",
     "orderPaid": "订单已支付",
-    "emailNotification": "对于自取和外卖订单，请查看您的邮箱获取订单更新。您将在以下情况收到通知：",
+    "emailNotification": "请等待商家接受您的订单。您将在以下情况收到通知：",
     "emailNotification1": "您的订单已收到（刚刚发送）",
     "emailNotification2": "商家接受您的订单",
-    "navigationWarning": "您已完成订单。如果您离开此页面，可能无法检索您的订单信息。您确定要离开吗？"
+    "pickupMessage": "您的订单已被接受，您现在可以前往商家取餐了",
+    "navigationWarning": "您确定要重新开始吗？您可能会丢失当前的订单信息。" 
   },
   "reservation": {
     "title": "预订座位",
