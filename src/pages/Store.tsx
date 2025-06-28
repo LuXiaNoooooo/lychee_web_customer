@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Cart from '../components/Cart'
 import { useStore, selectOrderType, selectOrderStatus, selectCurrencySymbol } from '../store'
 import { useTranslation } from 'react-i18next'
@@ -23,6 +23,7 @@ interface CategoryGroup {
 export default function Store() {
   const { storeId } = useParams()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const setCurrentStore = useStore(state => state.setCurrentStore)
   const setCurrencySymbol = useStore(state => state.setCurrencySymbol)
   const orderType = useStore(selectOrderType)
@@ -109,7 +110,13 @@ export default function Store() {
         .then(data => {
           setStore(data)
           setCurrencySymbol(data?.currency || 'usd')
-          if (orderType === 'Not Selected') {
+          
+          // Check if URL contains order type and table code to avoid showing popup
+          const orderTypeFromUrl = searchParams.get('order_type')
+          const tableCodeFromUrl = searchParams.get('table_code')
+          const hasInStoreUrlParams = orderTypeFromUrl === 'In-store' && tableCodeFromUrl
+          
+          if (orderType === 'Not Selected' && !hasInStoreUrlParams) {
             setShowOrderTypePopup(true)
           }
         })
@@ -117,7 +124,7 @@ export default function Store() {
           console.error('Error fetching store')
         })
     }
-  }, [storeId, setCurrentStore, setCurrencySymbol, orderType])
+  }, [storeId, setCurrentStore, setCurrencySymbol, orderType, searchParams])
 
   const handleScroll = useCallback(() => {
     if (menuRef.current && searchRef.current) {
