@@ -117,6 +117,7 @@ function CartModal({ onClose }: { onClose: () => void }) {
   const [store, setStore] = useState<Store | null>(null)
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false)
   const setOrderId = useStore(state => state.setOrderId)
   const setOrderNumber = useStore(state => state.setOrderNumber)
   const clearCart = useStore(state => state.clearCart)
@@ -139,8 +140,8 @@ function CartModal({ onClose }: { onClose: () => void }) {
   }, [])
   
   const handleClose = () => {
-    // Don't allow closing if showing redirect countdown or processing order
-    if ((showAlert && !store?.settings?.pay_later) || isProcessing) return;
+    // Don't allow closing if processing order or showing success countdown
+    if (isProcessing || (showAlert && isOrderSuccess && !store?.settings?.pay_later)) return;
     
     setIsClosing(true)
     setTimeout(() => {
@@ -207,6 +208,7 @@ function CartModal({ onClose }: { onClose: () => void }) {
       const data = await response.json()
       if (data.error) {
         setAlertMessage(t('cart.orderFailed'))
+        setIsOrderSuccess(false)
         setShowAlert(true)
       } else {
         if (store?.settings?.pay_later === true) {
@@ -217,6 +219,7 @@ function CartModal({ onClose }: { onClose: () => void }) {
             navigate(`/checkout/${storeId}`)
           }, 3000)
         }
+        setIsOrderSuccess(true)
         clearCart()
         setShowAlert(true)
         setOrderStatus('Pending')
@@ -226,6 +229,7 @@ function CartModal({ onClose }: { onClose: () => void }) {
     } catch (error) {
       console.error('Error:', error)
       setAlertMessage(t('cart.orderFailed'))
+      setIsOrderSuccess(false)
       setShowAlert(true)
     } finally {
       setIsProcessing(false)
@@ -255,7 +259,7 @@ function CartModal({ onClose }: { onClose: () => void }) {
           <button 
             className="modal-close" 
             onClick={handleClose} 
-            disabled={isProcessing || (showAlert && !store?.settings?.pay_later)}
+            disabled={isProcessing || (showAlert && isOrderSuccess && !store?.settings?.pay_later)}
           >
             <IoClose />
           </button>
@@ -321,9 +325,10 @@ function CartModal({ onClose }: { onClose: () => void }) {
           onClose={() => {
             onClose()
             setShowAlert(false)
+            setIsOrderSuccess(false)
           }}
-          showCloseButton={store?.settings?.pay_later === true}
-          countdown={store?.settings?.pay_later === true ? undefined : 3}
+          showCloseButton={!isOrderSuccess || store?.settings?.pay_later === true}
+          countdown={!isOrderSuccess ? undefined : (store?.settings?.pay_later === true ? undefined : 3)}
         />,
         document.body
       )}
