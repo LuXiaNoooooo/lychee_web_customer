@@ -72,7 +72,7 @@
     "checkout": "Controlla",
     "orderSuccessPayLater": "Ordine ricevuto \n Puoi aggiungere altri elementi al tuo ordine prima del checkout",
     "orderSuccessPayNow": "Ordine ricevuto \n Verrà reindirizzato alla pagina di checkout per pagare",
-    "orderFailed": "Ordine non inviato",
+    "orderFailed": "Ordine non inviato. Per favore prova di nuovo.",
     "confirmOrder": "Il commerciante riceverà il tuo ordine. Vuoi procedere?",
     "confirm": "Conferma",
     "cancel": "Annulla"

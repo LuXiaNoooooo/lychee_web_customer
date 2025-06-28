@@ -71,7 +71,7 @@
     "checkout": "Checkout",
     "orderSuccessPayLater": "Order received \n You can add more items to your order before checkout",
     "orderSuccessPayNow": "Order received \n You will be redirected to the checkout page to pay",
-    "orderFailed": "Order failed",
+    "orderFailed": "Order failed. Please try again.",
     "confirmOrder": "The merchant will receive your order. Do you want to proceed?",
     "confirm": "Confirm",
     "cancel": "Cancel"

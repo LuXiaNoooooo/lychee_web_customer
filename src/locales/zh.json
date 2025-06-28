@@ -72,7 +72,7 @@
     "checkout": "结账",
     "orderSuccessPayLater": "订单已收到 \n 您可以在结账前添加更多项目",
     "orderSuccessPayNow": "订单已收到 \n 您将被重定向到结账页面以支付",
-    "orderFailed": "下单失败",
+    "orderFailed": "下单失败。请重试。",
     "confirmOrder": "商家将收到您的订单。您要继续吗？",
     "confirm": "确认",
     "cancel": "取消"
