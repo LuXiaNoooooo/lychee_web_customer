@@ -12,6 +12,10 @@ import ConfirmPopup from '../components/ConfirmPopup'
 import { Item } from './Item'
 import { createPortal } from 'react-dom'
 
+const getServiceFee = (store: Store | null): number => {
+  return store?.currency === 'eur' ? 0.25 : 0.30
+}
+
 export default function Checkout() {
   const { storeId } = useParams()
   const [searchParams] = useSearchParams()
@@ -47,6 +51,7 @@ export default function Checkout() {
   let subtotal_amount = 0
   let tax_amount = 0
   let total_amount = 0
+  let service_fee_amount = 0
   let orderItems: CartItem[] = []
 
   // Determine if we should block navigation
@@ -80,6 +85,7 @@ export default function Checkout() {
   if (orderId) {  // Order has been sent to the server
     tax_amount = order?.tax_amount || 0
     total_amount = order?.total_amount || 0
+    service_fee_amount = (order as any)?.payment_intent ? getServiceFee(store) : 0
     subtotal_amount = total_amount - tax_amount * (store?.tax_info?.tax_included ? 0 : 1)
     const order_items = order?.order_items || []
     const store_items = store?.items || []
@@ -238,9 +244,15 @@ export default function Checkout() {
             <span>{t(store?.tax_info?.tax_included ? 'checkout.taxIncluded' : 'checkout.tax')} ({(store?.tax_info?.tax_rate ?? 0) * 100}%)</span>
             <span>{currencySymbol}{tax_amount.toFixed(2)}</span>
           </div>
+          {orderId && (order as any)?.payment_intent && (
+            <div className="total-line">
+              <span>{t('checkout.onlinePaymentServiceFee')}</span>
+              <span>{currencySymbol}{getServiceFee(store).toFixed(2)}</span>
+            </div>
+          )}
           <div className="total-line total">
             <span>{t('checkout.total')}</span>
-            <span>{currencySymbol}{total_amount.toFixed(2)}</span>
+            <span>{currencySymbol}{(total_amount + service_fee_amount).toFixed(2)}</span>
           </div>
         </div>
 
@@ -333,7 +345,7 @@ export default function Checkout() {
             <small>
               {t('checkout.serviceFeeNote', {
                 currency: currencySymbol,
-                amount: store?.currency === 'eur' ? '0.25' : '0.30'
+                amount: getServiceFee(store).toFixed(2)
               })}
             </small>
           </div>
