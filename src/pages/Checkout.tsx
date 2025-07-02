@@ -85,7 +85,7 @@ export default function Checkout() {
   if (orderId) {  // Order has been sent to the server
     tax_amount = order?.tax_amount || 0
     total_amount = order?.total_amount || 0
-    service_fee_amount = (order as any)?.payment_intent ? getServiceFee(store) : 0
+    service_fee_amount = order?.service_fee_surcharge || 0
     subtotal_amount = total_amount - tax_amount * (store?.tax_info?.tax_included ? 0 : 1)
     const order_items = order?.order_items || []
     const store_items = store?.items || []
@@ -244,10 +244,10 @@ export default function Checkout() {
             <span>{t(store?.tax_info?.tax_included ? 'checkout.taxIncluded' : 'checkout.tax')} ({(store?.tax_info?.tax_rate ?? 0) * 100}%)</span>
             <span>{currencySymbol}{tax_amount.toFixed(2)}</span>
           </div>
-          {orderId && (order as any)?.payment_intent && (
+          {orderId && service_fee_amount > 0 && (
             <div className="total-line">
               <span>{t('checkout.onlinePaymentServiceFee')}</span>
-              <span>{currencySymbol}{getServiceFee(store).toFixed(2)}</span>
+              <span>{currencySymbol}{service_fee_amount.toFixed(2)}</span>
             </div>
           )}
           <div className="total-line total">

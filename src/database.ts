@@ -29,6 +29,7 @@ export interface Order {
   order_number: string
   status: string
   invoice_url: string
+  service_fee_surcharge?: number
 }
 
 export async function getAllStores(): Promise<Store[]> {
