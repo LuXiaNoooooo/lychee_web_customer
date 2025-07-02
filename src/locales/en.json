@@ -98,7 +98,8 @@
     "emailNotification1": "Your order is received (just sent)",
     "emailNotification2": "The merchant accepts your order",
     "pickupMessage": "Your order has been accepted, you can now proceed to the merchant to pick up your order",
-    "navigationWarning": "Do you want to start over? You may lose your current order information."
+    "navigationWarning": "Do you want to start over? You may lose your current order information.",
+    "serviceFeeNote": "Note: A {{currency}}{{amount}} service fee applies for online payment"
   },
   "reservation": {
     "name": "Name",

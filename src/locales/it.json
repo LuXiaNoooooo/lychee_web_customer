@@ -99,7 +99,8 @@
     "emailNotification1": "Il tuo ordine è stato ricevuto (appena inviato)",
     "emailNotification2": "Il commerciante accetta il tuo ordine",
     "pickupMessage": "Il tuo ordine è stato accettato, puoi andare dal commerciante per ritirarlo ora",
-    "navigationWarning": "Vuoi iniziare da capo? Potresti perdere le informazioni del tuo ordine corrente."
+    "navigationWarning": "Vuoi iniziare da capo? Potresti perdere le informazioni del tuo ordine corrente.",
+    "serviceFeeNote": "Nota: Si applica una commissione di servizio di {{currency}}{{amount}} per il pagamento online"
   },
   "reservation": {
     "title": "Prenota Tavolo",

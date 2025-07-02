@@ -99,7 +99,8 @@
     "emailNotification1": "您的订单已收到（刚刚发送）",
     "emailNotification2": "商家接受您的订单",
     "pickupMessage": "您的订单已被接受，您现在可以前往商家取餐了",
-    "navigationWarning": "您确定要重新开始吗？您可能会丢失当前的订单信息。" 
+    "navigationWarning": "您确定要重新开始吗？您可能会丢失当前的订单信息。",
+    "serviceFeeNote": "注意：在线支付需要收取{{currency}}{{amount}}的服务费" 
   },
   "reservation": {
     "title": "预订座位",

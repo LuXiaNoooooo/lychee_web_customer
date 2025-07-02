@@ -268,66 +268,76 @@ export default function Checkout() {
       </div>
 
       {!(orderStatus === 'Completed' || (orderStatus === 'Pending' && orderType !== 'In-store')) ? (
-        <div className={`payment-buttons ${orderType === 'In-store' ? 'double' : 'single'}`}>
-          {orderType === 'In-store' ? (
-            <>
-              <button 
-                className="big-button"
-                onClick={() => {
-                  setAlertMessage(t('checkout.inStorePaymentMessage') + ' ' + orderNumber)
-                  setShowAlert(true)
-                }}
-              >
-                {t('checkout.inStorePayment')}
-              </button>
-              {store?.services.pay_online ? (
-                <form 
-                  ref={formRef}
-                  onSubmit={handleFormSubmit}
-                  action={`${API_URL}/orders_new/pay`} 
-                  method="POST"
+        <>
+          <div className={`payment-buttons ${orderType === 'In-store' ? 'double' : 'single'}`}>
+            {orderType === 'In-store' ? (
+              <>
+                <button 
+                  className="big-button"
+                  onClick={() => {
+                    setAlertMessage(t('checkout.inStorePaymentMessage') + ' ' + orderNumber)
+                    setShowAlert(true)
+                  }}
                 >
-                  <input type="hidden" name="order_info" value={JSON.stringify(orderInfo)} />
+                  {t('checkout.inStorePayment')}
+                </button>
+                {store?.services.pay_online ? (
+                  <form 
+                    ref={formRef}
+                    onSubmit={handleFormSubmit}
+                    action={`${API_URL}/orders_new/pay`} 
+                    method="POST"
+                  >
+                    <input type="hidden" name="order_info" value={JSON.stringify(orderInfo)} />
+                    <button 
+                      type="submit" 
+                      className={`big-button ${isProcessing ? 'loading' : ''}`}
+                      disabled={isProcessing}
+                    >
+                      {t('checkout.onlinePayment')}
+                    </button>
+                  </form>
+                ) : (
                   <button 
-                    type="submit" 
-                    className={`big-button ${isProcessing ? 'loading' : ''}`}
-                    disabled={isProcessing}
+                    className="big-button disabled" 
+                    onClick={() => {
+                      setAlertMessage(t('store.notAvailableNoOnlinePayments'))
+                      setShowAlert(true)
+                    }}
+                    disabled={true}
                   >
                     {t('checkout.onlinePayment')}
                   </button>
-                </form>
-              ) : (
+                )}
+              </>
+            ) : (
+              <form
+                ref={formRef}
+                onSubmit={handleFormSubmit}
+                method="POST"
+                action={`${API_URL}/orders_new/order-pay`}
+              >
+                <input type="hidden" name="order_info" value={JSON.stringify(orderInfo)} />
+                <input type="hidden" name="recaptcha_token" value="" />
                 <button 
-                  className="big-button disabled" 
-                  onClick={() => {
-                    setAlertMessage(t('store.notAvailableNoOnlinePayments'))
-                    setShowAlert(true)
-                  }}
-                  disabled={true}
+                  type="submit" 
+                  className={`big-button ${isProcessing ? 'loading' : ''}`}
+                  disabled={isProcessing}
                 >
                   {t('checkout.onlinePayment')}
                 </button>
-              )}
-            </>
-          ) : (
-            <form
-              ref={formRef}
-              onSubmit={handleFormSubmit}
-              method="POST"
-              action={`${API_URL}/orders_new/order-pay`}
-            >
-              <input type="hidden" name="order_info" value={JSON.stringify(orderInfo)} />
-              <input type="hidden" name="recaptcha_token" value="" />
-              <button 
-                type="submit" 
-                className={`big-button ${isProcessing ? 'loading' : ''}`}
-                disabled={isProcessing}
-              >
-                {t('checkout.onlinePayment')}
-              </button>
-            </form>
-          )}
-        </div>
+              </form>
+            )}
+          </div>
+          <div className="service-fee-note">
+            <small>
+              {t('checkout.serviceFeeNote', {
+                currency: currencySymbol,
+                amount: store?.currency === 'eur' ? '0.25' : '0.30'
+              })}
+            </small>
+          </div>
+        </>
       ) : (
         <div className="payment-buttons single">
           {orderType !== 'In-store' && (

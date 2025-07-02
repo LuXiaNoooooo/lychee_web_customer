@@ -1043,7 +1043,6 @@ body {
   left: 0;
   right: 0;
   background: none;
-  padding-bottom: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
   z-index: 10;
@@ -1470,6 +1469,18 @@ body {
 
 .email-notification-message li {
   margin: 2px 0;
+}
+
+/* Service Fee Note */
+.service-fee-note {
+  text-align: center;
+  padding: 0.5rem 1rem;
+  color: #666;
+}
+
+.service-fee-note small {
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 /* Order Type Popup Styles */
