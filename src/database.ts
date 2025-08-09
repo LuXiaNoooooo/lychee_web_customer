@@ -30,6 +30,7 @@ export interface Order {
   status: string
   invoice_url: string
   service_fee_surcharge?: number
+  donation_surcharge?: number
 }
 
 export async function getAllStores(): Promise<Store[]> {

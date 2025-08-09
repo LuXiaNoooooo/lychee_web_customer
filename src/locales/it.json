@@ -85,6 +85,7 @@
     "taxIncluded": "IVA Inclusa",
     "serviceFee": "Commissione di Servizio",
     "onlinePaymentServiceFee": "Commissione Servizio Pagamento Online",
+    "donationSurcharge": "Donazione",
     "total": "Totale",
     "onlinePayment": "Pagamento Online",
     "inStorePayment": "Pagamento in Negozio",

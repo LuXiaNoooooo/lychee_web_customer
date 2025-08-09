@@ -84,6 +84,7 @@
     "taxIncluded": "Tax Included",
     "serviceFee": "Service Fee",
     "onlinePaymentServiceFee": "Online Payment Service Fee",
+    "donationSurcharge": "Donation",
     "total": "Total",
     "onlinePayment": "Online Payment",
     "inStorePayment": "In-Store Payment",
