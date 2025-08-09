@@ -712,9 +712,13 @@ body {
 
 .popup .button-group {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.popup .button-group .button {
+  flex: 1;
 }
 
 .popup .button {
@@ -770,6 +774,81 @@ body {
 .table-input input:focus {
   outline: none;
   border-color: var(--primary-color);
+}
+
+/* Donation popup specific styles */
+.donation-title {
+  text-align: center;
+  margin: 0 0 1.5rem;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.donation-suggested-amounts {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.donation-amount-button {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e5e5;
+  border-radius: 0.75rem;
+  background: white;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.donation-amount-button:hover {
+  border-color: var(--primary-color);
+  background: #f8f9fa;
+  transform: translateY(-1px);
+}
+
+.donation-input-container {
+  margin-bottom: 1rem;
+}
+
+.donation-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.donation-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Hide number input spinner arrows */
+.donation-input::-webkit-outer-spin-button,
+.donation-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.donation-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.donation-error {
+  background: #fee;
+  color: #c33;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
 .option-group {

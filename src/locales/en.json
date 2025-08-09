@@ -121,5 +121,10 @@
     "getCode": "Get Code",
     "invalidVerificationCode": "Invalid verification code",
     "errorMessage": "An error has occurred"
+  },
+  "donation": {
+    "title": "Help keep Lychee's ordering system running?",
+    "inputPlaceholder": "Enter donation amount ≥ 0",
+    "errorNegativeAmount": "Donation amount cannot be negative"
   }
 } 

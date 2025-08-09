@@ -9,6 +9,7 @@ import { useSearchParams } from 'react-router-dom'
 import { API_URL } from '../config'
 import AlertPopup from '../components/AlertPopup'
 import ConfirmPopup from '../components/ConfirmPopup'
+import DonationPopup from '../components/DonationPopup'
 import { Item } from './Item'
 import { createPortal } from 'react-dom'
 
@@ -33,6 +34,8 @@ export default function Checkout() {
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
   const [showConfirm, setShowConfirm] = useState(false)
+  const [showDonationPopup, setShowDonationPopup] = useState(false)
+  const [selectedDonationAmount, setSelectedDonationAmount] = useState(0)
   const orderId = useStore(selectOrderId)
   const setOrderId = useStore(state => state.setOrderId)
   const [order, setOrder] = useState<Order | null>(null)
@@ -127,7 +130,7 @@ export default function Checkout() {
     })),
     total_amount: total_amount.toFixed(2),
     tax_amount: tax_amount.toFixed(2),
-    donation_surcharge: donation_surcharge_amount.toFixed(2),
+    donation_surcharge: selectedDonationAmount.toFixed(2),
     notes: notes,
     return_url: `${window.location.origin}/checkout/${storeId}`
   }
@@ -135,18 +138,23 @@ export default function Checkout() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (isProcessing) return
-    setIsProcessing(true)
-
-    if (!executeRecaptcha) {
-      console.error('reCAPTCHA not loaded')
-      setIsProcessing(false)
-      return
-    }
 
     // Validate email for non-in-store orders
     if (orderType !== 'In-store' && (!email || !email.includes('@'))) {
       setAlertMessage(t('checkout.emailRequired'))
       setShowAlert(true)
+      return
+    }
+
+    // Show donation popup for online payment
+    setShowDonationPopup(true)
+  }
+
+  const handleActualPayment = async () => {
+    setIsProcessing(true)
+
+    if (!executeRecaptcha) {
+      console.error('reCAPTCHA not loaded')
       setIsProcessing(false)
       return
     }
@@ -166,6 +174,17 @@ export default function Checkout() {
       console.error('reCAPTCHA failed', error)
       setIsProcessing(false)
     }
+  }
+
+  const handleDonationConfirm = (donationAmount: number) => {
+    setSelectedDonationAmount(donationAmount)
+    setShowDonationPopup(false)
+    handleActualPayment()
+  }
+
+  const handleDonationCancel = () => {
+    setShowDonationPopup(false)
+    setIsProcessing(false)
   }
 
   // Custom navigation handler
@@ -400,6 +419,14 @@ export default function Checkout() {
           message={t('checkout.navigationWarning')}
           onConfirm={handleConfirmNavigation}
           onCancel={handleCancelNavigation}
+        />,
+        document.body
+      )}
+
+      {showDonationPopup && createPortal(
+        <DonationPopup
+          onConfirm={handleDonationConfirm}
+          onCancel={handleDonationCancel}
         />,
         document.body
       )}

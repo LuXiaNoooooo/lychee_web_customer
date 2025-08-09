@@ -122,5 +122,10 @@
     "getCode": "Ottieni Codice",
     "invalidVerificationCode": "Codice di verifica non valido",
     "errorMessage": "Si è verificato un errore"
+  },
+  "donation": {
+    "title": "Aiuta a mantenere attivo il sistema Lychee?",
+    "inputPlaceholder": "Inserisci importo donazione ≥ 0",
+    "errorNegativeAmount": "L'importo della donazione non può essere negativo"
   }
 } 

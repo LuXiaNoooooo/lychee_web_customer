@@ -122,5 +122,10 @@
     "getCode": "获取验证码",
     "invalidVerificationCode": "验证码格式错误",
     "errorMessage": "发生错误"
+  },
+  "donation": {
+    "title": "帮助维持Lychee点餐系统运行？",
+    "inputPlaceholder": "输入≥0的捐赠金额",
+    "errorNegativeAmount": "捐赠金额不能为负数"
   }
 } 
