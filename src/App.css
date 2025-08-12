@@ -813,21 +813,38 @@ body {
 
 .donation-input-container {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.currency-prefix {
+  padding: 0.75rem 0.5rem 0.75rem 1rem;
+  background: #f8f9fa;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  border-right: 1px solid #e5e5e5;
 }
 
 .donation-input {
-  width: 100%;
+  flex: 1;
   padding: 0.75rem 1rem;
-  border: 1px solid #e5e5e5;
-  border-radius: 0.75rem;
+  border: none;
   font-size: 1rem;
-  text-align: center;
+  text-align: left;
   box-sizing: border-box;
+  background: white;
+}
+
+.donation-input-container:focus-within {
+  border-color: var(--primary-color);
 }
 
 .donation-input:focus {
   outline: none;
-  border-color: var(--primary-color);
 }
 
 /* Hide number input spinner arrows */

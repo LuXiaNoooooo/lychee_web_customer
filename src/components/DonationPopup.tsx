@@ -59,6 +59,7 @@ export default function DonationPopup({ onConfirm, onCancel }: DonationPopupProp
         </div>
 
         <div className="donation-input-container">
+          <span className="currency-prefix">{currencySymbol}</span>
           <input
             type="number"
             step="0.01"
