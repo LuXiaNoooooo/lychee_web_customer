@@ -89,7 +89,7 @@
     "onlinePayment": "Online Payment",
     "inStorePayment": "In-Store Payment",
     "inStorePaymentMessage": "Please pay at the counter \n Order Number:",
-    "addNotes": "Add notes here",
+    "addNotes": "(Optional) Add notes here",
     "unpaid": "Unpaid",
     "accepted": "Accepted",
     "pending": "Pending",

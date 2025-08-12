@@ -90,7 +90,7 @@
     "onlinePayment": "Pagamento Online",
     "inStorePayment": "Pagamento in Negozio",
     "inStorePaymentMessage": "Si prega di pagare alla cassa \n Numero Ordine:",
-    "addNotes": "Aggiungi note qui",
+    "addNotes": "(Opzionale) Aggiungi note qui",
     "unpaid": "Non Pagato",
     "accepted": "Accettato",
     "pending": "In Attesa",
