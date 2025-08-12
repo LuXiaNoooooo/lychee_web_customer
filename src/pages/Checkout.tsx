@@ -113,6 +113,12 @@ export default function Checkout() {
     total_amount = subtotal_amount + tax_amount * (store?.tax_info?.tax_included ? 0 : 1)
   }
 
+  // Calculate item prices once for reuse
+  const orderItemsWithCalculatedPrices = orderItems.map(item => ({
+    ...item,
+    calculatedPrice: orderId ? item.price : calculateItemTotal(item.price, 1, item.selected_customizations)
+  }))
+
   // Calculate additional fees
   const orderInfo = {
     lang: lang,
@@ -121,11 +127,11 @@ export default function Checkout() {
     order_type: orderType,
     table_code: tableCode,
     email: orderType !== 'In-store' ? email : undefined,
-    order_items: orderItems.map(item => ({
+    order_items: orderItemsWithCalculatedPrices.map(item => ({
       id: item.id,
       name: item.name,
       quantity: item.quantity,
-      price: calculateItemTotal(item.price, 1, item.selected_customizations),
+      price: item.calculatedPrice,
       selected_customizations: item.selected_customizations
     })),
     total_amount: total_amount.toFixed(2),
@@ -232,13 +238,13 @@ export default function Checkout() {
 
       <div className="checkout-content-section">
         <div className="cart-items-container">
-          {orderItems.map((item, index) => (
+          {orderItemsWithCalculatedPrices.map((item, index) => (
             <div key={index} className="cart-item">
               <div className="item-details">
                 <div className="item-line">
                   <span>{item.quantity} x {item.name[lang] ?? item.name['en']}</span>
                   <span className="price">
-                    {currencySymbol}{calculateItemTotal(item.price, 1, item.selected_customizations).toFixed(2)}
+                    {currencySymbol}{item.calculatedPrice.toFixed(2)}
                   </span>
                 </div>
                 {item.selected_customizations && (
