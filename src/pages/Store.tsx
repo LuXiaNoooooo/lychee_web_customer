@@ -102,7 +102,7 @@ export default function Store() {
   }
 
   useEffect(() => {
-    if (storeId && !hasFetchedStore.current) {
+    if (storeId) {
       hasFetchedStore.current = true
       setCurrentStore(storeId)
       
@@ -123,6 +123,11 @@ export default function Store() {
         .catch(() => {
           console.error('Error fetching store')
         })
+    }
+    
+    // Reset the fetch flag when storeId changes
+    return () => {
+      hasFetchedStore.current = false
     }
   }, [storeId, setCurrentStore, setCurrencySymbol, orderType, searchParams])
 
