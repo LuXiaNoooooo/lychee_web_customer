@@ -110,15 +110,6 @@ export default function Store() {
         .then(data => {
           setStore(data)
           setCurrencySymbol(data?.currency || 'usd')
-          
-          // Check if URL contains order type and table code to avoid showing popup
-          const orderTypeFromUrl = searchParams.get('order_type')
-          const tableCodeFromUrl = searchParams.get('table_code')
-          const hasInStoreUrlParams = orderTypeFromUrl === 'In-store' && tableCodeFromUrl
-          
-          if (orderType === 'Not Selected' && !hasInStoreUrlParams) {
-            setShowOrderTypePopup(true)
-          }
         })
         .catch(() => {
           console.error('Error fetching store')
@@ -129,7 +120,21 @@ export default function Store() {
     return () => {
       hasFetchedStore.current = false
     }
-  }, [storeId, setCurrentStore, setCurrencySymbol, orderType, searchParams])
+  }, [storeId, setCurrentStore, setCurrencySymbol])
+
+  // Separate effect to handle order type popup - runs after store state is properly set
+  useEffect(() => {
+    if (storeId && store) {
+      // Check if URL contains order type and table code to avoid showing popup
+      const orderTypeFromUrl = searchParams.get('order_type')
+      const tableCodeFromUrl = searchParams.get('table_code')
+      const hasInStoreUrlParams = orderTypeFromUrl === 'In-store' && tableCodeFromUrl
+      
+      if (orderType === 'Not Selected' && !hasInStoreUrlParams) {
+        setShowOrderTypePopup(true)
+      }
+    }
+  }, [storeId, store, orderType, searchParams])
 
   const handleScroll = useCallback(() => {
     if (menuRef.current && searchRef.current) {
